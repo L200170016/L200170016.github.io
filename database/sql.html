@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container" id="navbar">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      </div>
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li role="presentation"><a href="index.html">HOME</a></li>
+          <li role="presentation"><a href="#about">ABOUT</a></li>
+          <li role="presentation"><a href="#"><i class="glyphicon glyphicon-search"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar -->
+
+  <!-- jumbotron -->
+  <div id="background">
+    <div class="jumbotron">
+	<h1>Hello World</h1>
+      <p>Learning is Fun!!</p>
+    </div>
+  </div>
+  <!-- jumbotron -->
+
+  <!-- container atas -->
+  <div id="home">
+    <div class="isi">
+      <div class="container atas">
+        <h1>Daftar Perintah SQL</h1>
+        <div class="row">
+			<p class="text-left"><strong>Structured Query Language</strong> atau biasa disebut SQL adalah suatu bahasa khusus yang digunakan untuk mengakses data-data yang 
+			ada di dalam sebuah database relasional.</br>
+			SQL adalah bahasa komputer yang menggunakan standar ANSI (American Nasional Standard Institute) yang dipakai dalam manajemen database relasional.
+			Dengan SQL atau bisa juga disebut query kita dapat memanipulasi atau mengedit database sesuai yang kita kehendaki. seperti menjalankan query untuk mengambil data, 
+			menambah data, memperbarui data dan menghapus data.</br>
+			Sampai sekarang hampir keseluruhan server database maupun software – software database lainnya mengenal serta mampu mengartikan bahasa SQL.
+			oleh karenanya belajar bahasa SQL sangat penting bagi yang bergelut dibidang IT maupun yang selalu bersinggungan dengan database relasional.</p>
+
+				<ol class="text-left" type="1">
+					<li><strong>Create Database</strong></li>
+						<p>Digunakan untuk membuat database baru.</br>
+						Syntax dasar:</br>
+						CREATE DATABASE database_nama</br>
+						Contoh:</br>
+						CREATE DATABASE databaseku</p></br>
+		
+					<li><strong>Create Table</strong></li>
+						</p>Digunakan untuk membuat tabel data baru dalam sebuah database.</br>
+						Syntax dasar:</br>
+						CREATE TABLE(</br>
+						Column_name1 table_nama data_type</br>
+						Column_name2 table_nama data_type</br>
+						Column_name3 table_nama data_type</br>
+						)</br>
+						Contoh:</br>
+						CREATE TABLE bukutamu(Id int,Nama varchar (255),Email varchar(50),Kota varchar(255))</p></br>
+
+					<li><strong>Select</strong></li>
+						<p>Digunakan untuk memilih data dari table database.</br>
+						Syntax dasar:</br>
+						SELECT column_name(s)</br>
+						FROM table_name</br>
+						Atau</br>
+						SELECT * FROM table_name</br></br>
+						Contoh 1:</br>
+						SELECT nama,email FROM bukutamu</br></br>
+						Contoh 2:</br>
+						SELECT * FROM bukutamu</p></br>
+
+					<li><strong>Select Distinct</strong></li>
+						</p>Digunakan untuk memilih data-data yang berbeda (menghilangkan duplikasi) dari sebuah table database.</br>
+						Syntax dasar:</br>
+						SELECT DISTINCT column_name(s)</br>
+						FROM table_name</br></br>
+						Contoh:</br>
+						SELECT DISTINCT kota FROM bukutamu</p></br>
+			
+					<li><strong>Where</strong></li>
+						<p>Digunakan untuk memfilter data pada perintah Select</br>
+						Syntax dasar:</br>
+						SELECT column name(s)</br>
+						FROM table_name</br>
+						WHERE column_name operator value</br></br>
+						Contoh:</br>
+						SELECT * FROM bukutamu WHERE kota=’YOGYAKARTA’</p>
+				</ol>
+			</div> 
+        </div>
+      </div>
+    </div>
+  <!-- container atas -->
+<!-- about -->
+  <div id="about">
+    <div class="container footer">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <h2>About Us</h2>
+        <p> Hello I'm Dessy Nur Azizah Mahasiswa Teknik Informatika di Universitas Muhammadiyah Surakarta </br>
+		Instagram : dessyna_</p>
+      </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <h2>Newsletter Subscription</h2>
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" value="Your Email">
+            <div class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Subscribe </button>
+            </div>
+          </div>
+          <div id="icon"><i class="fa fa-instagram"></i><i class="fa fa-facebook-official"></i><i class="fa fa-twitter-square"></i><i class="fa fa-youtube-play"></i></div>
+        </div>
+    </div>
+  </div>
+  <!-- about -->
+
+  <!-- kaki -->
+  <div id="kaki">
+    <div class="container">
+	    <h5 class="text-center">dessyna © 2019</h5>
+
+    </div>
+  </div>
+  <!-- kaki -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	</body>
+
+</html>
