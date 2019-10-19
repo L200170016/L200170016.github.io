@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container" id="navbar">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      </div>
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li role="presentation"><a href="index.html">HOME</a></li>
+          <li role="presentation"><a href="#about">ABOUT</a></li>
+          <li role="presentation"><a href="#"><i class="glyphicon glyphicon-search"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar -->
+
+  <!-- jumbotron -->
+  <div id="background">
+    <div class="jumbotron">
+	<h1>Hello World</h1>
+      <p>Learning is Fun!!</p>
+    </div>
+  </div>
+  <!-- jumbotron -->
+
+  <!-- container atas -->
+  <div id="home">
+    <div class="isi">
+      <div class="container atas">
+		<h1>Full-text search </h1>
+		<div class="row">
+			<p class="text-left">Full-Text Search di MySQL server mengajak pengguna menjalankan kueri full-text berbasis data karakter di tabel MySQL. Kamu harus membuat index full-text di tabel sebelum kamu menjalankan kueri full-text di tabel. Index full-text dapat berisi satu atau lebih karakter berbasis kolom di tabel.</p>
+			<ul class='w3r_list'>
+				<li class="text-left"> FULLTEXT adalah tipe index dari index full-text di MySQL.</li>
+				<li class="text-left"> tabel InnoDB atau MyISAM menggunakan index Full-text.</li>
+				<li class="text-left"> Index Full-text dapat dibuat hanya untuk  VARCHAR, CHAR atau kolom TEXT.</li>
+				<li class="text-left">Definisi Index sebuah FULLTEXT dapat di berikan di CREATE TABLE statement atau dapat ditambahkan kemudian menggunakan ALTER TABLE atau CREATE INDEX.</li>
+				<li class="text-left">Kumpulan data besar tanpa indeks FULLTEXT jauh lebih cepat untuk memuat data ke dalam tabel daripada memuat data ke dalam tabel yang memiliki indeks FULLTEXT yang ada. Oleh karena itu buat indeks setelah memuat data.
+</li>
+			</ul>
+			<p class="text-left"><strong>MySQL Version: 5.6</strong></p>
+			<p class="text-left"><strong>Syntax: </strong></p>
+				<pre class='well_syntax'>MATCH (col1,col2,col3...) AGAINST (expr [search_modifier])
+				</pre>
+			<ul class='w3r_list'>
+				<li class="text-left">col1, col2, col3 - Daftar yang dipisahkan koma yang menamai kolom yang akan dicari </li>
+				<li class="text-left">AGAINST() membutuhkan string untuk mencari, dan pengubah opsional yang menunjukkan jenis pencarian apa yang harus dilakukan. </li>
+				<li class="text-left">String pencarian harus berupa nilai string. Nilai ini konstan selama evaluasi permintaan. </li>
+			</ul>
+			<p class="text-left">Terdapat 3 tipe dari full-text searches :</p>
+			<ul class='w3r_list'>
+				<li class="text-left">Natural Language Full-Text Searches</li>
+				<li class="text-left">Boolean Full-Text searches</li>
+				<li class="text-left">Query expansion searches </li>
+			</ul>
+			<p class="text-left">Catatan: Beberapa kata diabaikan dalam pencarian teks lengkap.</p>
+			<ul class='w3r_list'>
+				<li class="text-left">Panjang minimum kata untuk pencarian teks lengkap pada sebagai berikut</li>
+			<ul class='w3r_list'>
+				<li class="text-left">Tiga karakter untuk indeks pencarian InnoDB.</li>
+				<li class="text-left"> Empat karakter untuk indeks pencarian MyISAM.</li>
+			</ul>
+				</li>
+				<li class="text-left">Stop kata adalah kata-kata yang sangat umum seperti 'on', 'the' atau 'it', muncul di hampir setiap dokumen. Jenis kata ini diabaikan selama pencarian. </li>
+			</ul>
+			<p class="text-left"><strong>Natural Language Full-Text Searches</strong></p>
+			<p class="text-left">Natural language full-text search menafsirkan string pencarian sebagai teks bebas (bahasa manusia alami) dan tidak ada operator khusus yang diperlukan. Pencarian teks lengkap adalah pencarian bahasa alami jika modifier IN NATURAL LANGUAGE MODE (lihat sintaks berikut) diberikan atau tidak. Fungsi MATCH () mencari string terhadap koleksi teks (Satu set satu atau lebih kolom yang termasuk dalam indeks FULLTEXT.). Untuk setiap baris dalam tabel, MATCH () mengembalikan nilai relevansi; yaitu, ukuran kesamaan antara string pencarian (diberikan sebagai argumen untuk fungsi AGAINST ()) dan teks di baris itu di kolom yang disebutkan dalam daftar MATCH ().</p>
+			<p class="text-left">Format dasar permintaan mode pencarian null-text Bahasa alami adalah sebagai berikut:</p>
+			<p class="text-left">Code:</p>
+				<pre class="line-numbers"><code class="language-sql">SELECT * FROM table_name WHERE MATCH(col1, col2)
+				AGAINST('search terms' IN NATURAL LANGUAGE MODE)
+					</code>
+				</pre>
+			<p class="text-left"><strong>Example</strong></p>
+				<pre class='code'>mysql> CREATE TABLE tutorial (
+				id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
+				title VARCHAR(200), 
+				description TEXT, 
+				FULLTEXT(title,description)
+				) ENGINE=InnoDB;
+				Query OK, 0 rows affected (2.40 sec)</pre>
+			<p class="text-left">Let insert some records in tutorial table:</p>
+				<pre class='code' style="overflow: scroll">mysql>INSERT INTO tutorial (title,description) VALUES
+				('SQL Joins','Klausa SQL JOIN menggabungkan baris dari dua atau lebih tabel. Ini membuat satu set baris dalam tabel sementara.'),
+				('SQL Equi Join','SQL EQUI JOIN melakukan JOIN terhadap nilai persamaan atau kolom yang cocok dari tabel terkait. Tanda sama dengan (=) digunakan sebagai operator pembanding di mana klausa untuk merujuk kesetaraan.'),
+				('SQL Left Join','The SQL LEFT JOIN, menggabungkan dengan dua tabel dan mengambil baris berdasarkan pada suatu kondisi, yang cocok di kedua tabel dan baris yang tidak cocok juga akan tersedia dari tabel sebelum klausa JOIN.'),
+				('SQL Cross Join','The SQL CROSS JOIN produces a result set which is the number of rows in the first table multiplied by the number of rows in the second table, if no WHERE clause is used along with CROSS JOIN.'),
+				('SQL Full Outer Join','di SQL the FULL OUTER JOIN menggabungkan hasil gabungan luar kiri dan kanan dan mengembalikan semua (cocok atau tidak cocok) baris dari tabel di kedua sisi klausa gabungan.'),
+				('SQL Self Join','A self join adalah gabungan di mana tabel bergabung dengan dirinya sendiri (yang juga disebut Unary relationships), terutama ketika tabel memiliki FOREIGN KEY yang merujuk PRIMARY KEY sendiri.');</pre>
+			<p class="text-left">Biarkan mencari string 'left right' di bidang deskripsi: </p>
+				<pre class="well" style="overflow: scroll">mysql> SELECT * FROM tutorial WHERE MATCH(title,description) AGAINST ('left right' IN NATURAL LANGUAGE MODE);
+				+----+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+				| id | title               | description                                                                                                                                                                                                   |
+				+----+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+				|  5 | SQL Full Outer Join | di SQL the FULL OUTER JOIN menggabungkan hasil gabungan luar kiri dan kanan dan mengembalikan semua (cocok atau tidak cocok) baris dari tabel di kedua sisi klausa gabungan.                                  |
+				|  3 | SQL Left Join       | The SQL LEFT JOIN, menggabungkan dengan dua tabel dan mengambil baris berdasarkan pada suatu kondisi, yang cocok di kedua tabel dan baris yang tidak cocok juga akan tersedia dari tabel sebelum klausa JOIN. |
+				+----+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+				2 rows in set (0.00 sec)
+				</pre>
+			<p class="text-left">Secara default, pencarian tidak peka huruf besar-kecil. Untuk melakukan pencarian teks lengkap case-sensitive, gunakan binary collation untuk kolom yang diindeks. Misalnya, kolom yang menggunakan set karakter latin1 dapat diberi susunan latin1_bin untuk menjadikannya case sensitif untuk pencarian teks lengkap.</p>
+			<p class="text-left">Ketika MATCH() digunakan dalam klausa WHERE, seperti pada contoh yang ditunjukkan sebelumnya, baris yang dikembalikan secara otomatis diurutkan dengan relevansi tertinggi terlebih dahulu.</p>
+				<ul class='w3r_list'>
+					<li class="text-left">Nilai relevansi adalah angka floating-point yang tidak negatif.</li>
+					<li class="text-left">Tidak ada relevansi berarti tidak ada kesamaan.</li>
+					<li class="text-left">Relevansi dihitung berdasarkan -
+				<ul class='w3r_list'>
+					<li class="text-left">jumlah kata dalam baris</li>
+					<li class="text-left">jumlah kata unik di baris itu</li>
+					<li class="text-left">jumlah total kata dalam koleksi</li>
+					<li class="text-left">jumlah dokumen (baris) yang mengandung kata tertentu.</li>
+				</ul>
+					</li>
+				</ul>
+			<p class="text-left">Contoh berikut menunjukkan cara mengambil nilai relevansi secara eksplisit:</p>
+				<pre class="text-left" style="overflow: scroll">mysql> SELECT id, MATCH(title,description) AGAINST ('left right' IN NATURAL LANGUAGE MODE) AS score FROM tutorial;
+					+----+---------------------+
+					| id | score               |
+					+----+---------------------+
+					|  1 |                   0 |
+					|  2 |                   0 |
+					|  3 | 0.45528939366340637 |
+					|  4 |                   0 |
+					|  5 |  0.8331640362739563 |
+					|  6 |                   0 |
+					+----+---------------------+
+					6 rows in set (0.00 sec)</pre>
+			<p class="text-left"><strong>Count matches</strong></p>
+				<p class="text-left">Untuk menghitung kecocokan, Anda dapat menggunakan kueri seperti ini:</p>
+					<pre  class="text-left" style="overflow: scroll">mysql> SELECT COUNT(*) FROM tutorial WHERE  MATCH(title,description) AGAINST ('left right' IN NATURAL LANGUAGE MODE);
+					+----------+
+					| COUNT(*) |
+					+----------+
+					|        2 |
+					+----------+
+					1 row in set (0.03 sec)
+					</pre>
+			<p class="text-left"><strong>Boolean Full-Text Searches</strong></p>
+				<p class="text-left">Pencarian boolean mengartikan string pencarian menggunakan aturan bahasa permintaan khusus. String berisi kata-kata yang harus dicari. Itu juga bisa berisi operator yang menentukan persyaratan sehingga kata harus ada atau tidak ada dalam baris yang cocok, atau harus berbobot lebih tinggi atau lebih rendah dari biasanya. Kata-kata umum tertentu (stopwords) dihilangkan dari indeks pencarian dan tidak cocok jika ada dalam string pencarian. MySQL dapat melakukan pencarian teks lengkap boolean menggunakan modifier IN BOOLEAN MODE. Dengan pengubah ini, karakter tertentu memiliki arti khusus di awal atau akhir kata dalam string pencarian.</p>
+					<p class="text-left">Format dasar kueri mode boolean adalah sebagai berikut:</p>
+						<p class="text-left">Code:</p>
+							<pre class="text-left"><code class="language-sql">SELECT * FROM table_name WHERE MATCH(col1, col2)AGAINST('search terms' IN BOOLEAN MODE)
+								</code>
+							</pre>
+						<p class="text-left"><strong>Karakteristik pencarian Teks Lengkap Boolean:</strong></p>
+							<ul class='w3r_list'>
+								<li class="text-left">Jangan gunakan ambang batas 50% yang berlaku untuk indeks pencarian MyISAM.</li>
+								<li class="text-left">Jangan secara otomatis mengurutkan baris untuk mengurangi relevansi.</li>
+								<li class="text-left">Kueri Boolean terhadap indeks pencarian MyISAM dapat bekerja bahkan tanpa indeks FULLTEXT.</li>
+								<li class="text-left">Parameter teks lengkap panjang teks minimum dan maksimum berlaku:
+							<ul class='w3r_list'>
+								<li class="text-left">Untuk InnoDB search indexes, innodb_ft_min_token_size and innodb_ft_max_token_size</li>
+								<li class="text-left">Untuk MyISAM search indexes, ft_min_word_len and ft_max_word_len.</li>
+							</ul>
+								<li class="text-left">InnoDB full-text search tidak mendukung penggunaan beberapa operator pada satu kata pencarian.</li>
+							</ul>
+						<p class="text-left">Pencarian teks lengkap boolean mendukung operator berikut: </p>
+						<div class="table-responsive">
+							<table class='table table-bordered'>
+								<tr>
+									<th>Operator</th>
+									<th>Description</th>
+									<th>Example</th>
+								</tr>
+								<tr class="text-left">
+									<td scope="row"><p>+</p>
+									<p>&nbsp;</p></td>
+									<td>Tanda tambah memimpin menunjukkan bahwa kata harus ada di setiap baris yang dikembalikan.</td>
+									<td><p>'+join +union'<br>
+									Mencari baris yang terdapat dua kata tersebut <br>
+									'+join union'<br>
+									Mencari baris yang terdapat kata 'join', tapi ranking baris akan lebih tinggi apabila terdapat kata 'union' </p> </td>
+								</tr>
+								<tr class="text-left">
+									<td>-</td>
+									<td>Tanda minus awal menunjukkan bahwa kata tertentu tidak boleh ada di salah satu baris yang dikembalikan. - Operator hanya bertindak untuk mengecualikan baris yang jika tidak cocok dengan istilah pencarian lainnya.</td>
+									<td>'+join -union' <br>
+									Mencari baris yang derdapat kata 'join' tetapi tidak terdapat kata 'union'. </td>
+								</tr>
+								<tr class="text-left">
+									<td>(no operator) </td>
+									<td>Secara default, kata tersebut opsional, tetapi baris yang mengandungnya diberi peringkat lebih tinggi. </td>
+									<td>'join -union' <br>
+									Cari baris yang mengandung setidaknya satu dari dua kata.</td>
+								</tr>
+								<tr class="text-left">
+									<td>&gt; &lt;</td>
+									<td>Dua operator ini digunakan untuk mengubah kontribusi kata ke nilai relevansi yang ditugaskan ke baris. & gt; operator meningkatkan kontribusi dan & lt; Operator menguranginya. </td>
+									<td>'+join +(&gt;left &lt;right)' <br>
+											Temukan baris yang berisi kata 'join' dan 'left' atau 'join' dan 'right' (dalam urutan apa pun), tetapi beri peringkat 'left join' lebih tinggi dari 'right join'.</td>
+								</tr>
+								<tr class="text-left">
+									<td>( )</td>
+									<td>Kurung kata-kata kelompok ke dalam sub-ekspresi. Kelompok yang dikurung dapat disarangkan.</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="text-left">
+									<td>~</td>
+									<td>Sebuah tilde terkemuka bertindak sebagai operator negasi, menyebabkan kontribusi kata pada relevansi baris menjadi negatif. </td>
+									<td>'+join ~left' <br>
+									Temukan baris yang mengandung kata 'join', tetapi jika baris juga berisi kata 'left', beri peringkat lebih rendah daripada jika baris tidak. </td>
+								</tr>
+								<tr class="text-left">
+									<td>*</td>
+									<td>Tanda bintang berfungsi sebagai operator pemotongan (atau wildcard). Berbeda dengan operator lain, itu ditambahkan ke kata yang akan terpengaruh. Kata-kata cocok jika mereka mulai dengan kata sebelum * operator.</td>
+									<td>'join*'<br>
+									Temukan baris yang berisi kata-kata seperti'join', 'joins', 'joining'</td>
+								</tr>
+								<tr class="text-left">
+									<td>&quot;</td>
+									<td>Frasa yang dilampirkan dalam karakter tanda kutip ganda ("& quot;") hanya cocok dengan baris yang mengandung frasa secara harfiah, seperti yang diketik.</td>
+									<td>'&quot;left join&quot;' <br>
+									Temukan baris yang mengandung frasa persis & quot; mari bergabung & quot ;. </td>
+								</tr>
+							</table>
+						</div>
+					<p class="text-left">Example: Boolean Full-Text Searches</p>
+					<p class="text-left">Dalam kueri berikut, kueri mengambil semua baris yang berisi kata  'Joins' tetapi tidak 'right'.   </p>
+						<pre class="text-left" style="overflow: scroll">mysql> SELECT * FROM tutorial WHERE  MATCH(title,description) AGAINST ('+Joins -right' IN BOOLEAN MODE);
+						+----+---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+						| id | title         | description                                                                                                                                                                                            |
+						+----+---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+						|  1 | SQL Joins     | Klausa SQL JOIN menggabungkan baris dari dua atau lebih tabel. Ini membuat satu set baris dalam tabel sementara.                                                                                       |                      |
+						|  3 | SQL Left Join | SQL LEFT JOIN, menggabungkan dua tabel dan mengambil baris berdasarkan suatu kondisi, yang cocok dengan tabel dan baris yang tidak cocok juga akan tersedia dari tabel sebelum klausa JOIN.            |
+						+----+---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+						2 rows in set (0.02 sec) 
+						</pre>
+			<!-- container atas -->
+<!-- about -->
+  <div id="about">
+    <div class="container footer">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <h2>About Us</h2>
+        <p> Hello I'm Dessy Nur Azizah Mahasiswa Teknik Informatika di Universitas Muhammadiyah Surakarta </br>
+		Instagram : dessyna_</p>
+      </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <h2>Newsletter Subscription</h2>
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" value="Your Email">
+            <div class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Subscribe </button>
+            </div>
+          </div>
+          <div id="icon"><i class="fa fa-instagram"></i><i class="fa fa-facebook-official"></i><i class="fa fa-twitter-square"></i><i class="fa fa-youtube-play"></i></div>
+        </div>
+    </div>
+  </div>
+  <!-- about -->
+
+  <!-- kaki -->
+  <div id="kaki">
+    <div class="container">
+	    <h5 class="text-center">dessyna © 2019</h5>
+
+    </div>
+  </div>
+  <!-- kaki -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	</body>
+
+</html>
