@@ -6,7 +6,10 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif, 'Cookie';
 }
-
+html{
+    
+    scroll-padding-top: 6rem;
+}
 :root{
     --primary-color:#fff;
     --secondary-color:#222;
