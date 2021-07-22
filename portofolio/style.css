@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+.navbar{
+    background-color: #e2edff;
+}
+.navbar-brand,
+#contact h2,
+#about h2,
+#projects h2{
+    font-family: 'Satisfy', cursive;
+}
+
+.jumbotron{
+    padding-top: 2rem;
+    background-color: #e2edff;
+}
+
+.jumbotron .description h1{
+    font-size: 3em;
+    margin-bottom: 10px;
+    line-height: 1.4em;
+    font-weight: 700;
+}
+.profile{
+    margin-top: 15rem;;
+}
+.image{
+    margin-top: 10rem;;
+    text-align: center;
+}
+.jumbotron .description a{
+    border-radius: 30px;
+    background-color:#DAA520;
+}
+
+.btn-kirim,
+.btn-loading{
+    border-radius: 30px;
+}
+
+#projects{
+    background-color: #e2edff;
+}
+
+section {
+    padding-top : 5rem;
+}
+footer{
+    background-color: #e2edff;
+}
+footer a{
+    text-decoration: none;
+}
