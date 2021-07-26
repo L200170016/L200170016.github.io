@@ -197,22 +197,22 @@
           if (nama.length == 0) {
             $(".name-msg")
               .addClass("invalid-msg")
-              .text("nama harus di isi !");
+              .text("Nama harus di isi !");
             $(this)
               .addClass("invalid-input")
-              .removeClass("valid-input");
+              .removeClass("valid-input").removeClass("border-success");
           } else if (!validName.test(nama)) {
             $(".name-msg")
               .addClass("invalid-msg")
-              .text("hanya huruf dan spasi yang diperbolehkan");
+              .text("Hanya huruf dan spasi yang diperbolehkan");
             $(this)
               .addClass("invalid-input")
-              .removeClass("valid-input");
+              .removeClass("valid-input").removeClass("border-success");
           } else {
             $(".name-msg").empty();
             $(this)
               .addClass("valid-input")
-              .removeClass("invalid-input");
+              .removeClass("invalid-input").addClass("border-success");
           }
         });
 
@@ -226,19 +226,19 @@
               .text("Email harus di isi !");
             $(this)
               .addClass("invalid-input")
-              .removeClass("valid-input");
+              .removeClass("valid-input").removeClass("border-success");
           } else if (!validEmail.test(email)) {
             $(".email-msg")
               .addClass("invalid-msg")
               .text("Email tidak valid");
             $(this)
               .addClass("invalid-input")
-              .removeClass("valid-input");
+              .removeClass("valid-input").removeClass("border-success");
           } else {
             $(".email-msg").empty();
             $(this)
               .addClass("valid-input")
-              .removeClass("invalid-input");
+              .removeClass("invalid-input").addClass("border-success");
           }
         });
 
@@ -251,12 +251,12 @@
               .text("Pesan harus di isi !");
             $(this)
               .addClass("invalid-input")
-              .removeClass("valid-input");
+              .removeClass("valid-input").removeClass("border-success");
           } else {
             $(".pesan-msg").empty();
             $(this)
               .addClass("valid-input")
-              .removeClass("invalid-input");
+              .removeClass("invalid-input").addClass("border-success");
           }
         });
 
