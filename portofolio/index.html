@@ -142,25 +142,30 @@
               <strong>Terimakasih!</strong> Pesan anda sudah kami terima.
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <form name='dessyna-contact-form'>
-              <div class="mb-3">
+             <form name="dessyna-contact-form" id="myForm">
+              <div class="mb-3 form-group">
                 <label for="name" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" name="nama" required>
+                <input type="text" class="form-control" id="name" aria-describedby="name" name="nama" required />
+                <small class="text-danger name-msg"></small>
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email" name="email" required>
+                <input type="email" class="form-control" id="email" aria-describedby="email" name="email" required />
+                <small class="text-danger email-msg"></small>
               </div>
               <div class="mb-3">
                 <label for="pesan" class="form-label">Pesan</label>
                 <textarea class="form-control" id="pesan" rows="3" name="pesan" required></textarea>
+                <small class="text-danger pesan-msg"></small>
               </div>
-              <center><button type="submit" class="btn btn-primary btn-kirim">Kirim</button></center>
-              <center><button class="btn btn-primary btn-loading d-none" type="button" disabled>
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Loading...
-              </button> </center>
-          </form>
+              <center><button type="submit" class="btn btn-primary btn-kirim allowed-submit" id="kirim" disabled>Kirim</button></center>
+              <center>
+                <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+                </button>
+              </center>
+            </form>
           </div>
         </div>
       </div>
@@ -183,6 +188,87 @@
             var img = $(this).attr('src');
             $("#show-img").attr('src', img);
             $("#imgmodal").modal('show');
+        });
+      
+      //validation for  Name
+        $("#name").on("input", function() {
+          var nama = $(this).val();
+          var validName = /^[a-zA-Z ]*$/;
+          if (nama.length == 0) {
+            $(".name-msg")
+              .addClass("invalid-msg")
+              .text("nama harus di isi !");
+            $(this)
+              .addClass("invalid-input")
+              .removeClass("valid-input");
+          } else if (!validName.test(nama)) {
+            $(".name-msg")
+              .addClass("invalid-msg")
+              .text("hanya huruf dan spasi yang diperbolehkan");
+            $(this)
+              .addClass("invalid-input")
+              .removeClass("valid-input");
+          } else {
+            $(".name-msg").empty();
+            $(this)
+              .addClass("valid-input")
+              .removeClass("invalid-input");
+          }
+        });
+
+        // valiadation for Email
+        $("#email").on("input", function() {
+          var email = $(this).val();
+          var validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          if (email.length == 0) {
+            $(".email-msg")
+              .addClass("invalid-msg")
+              .text("Email harus di isi !");
+            $(this)
+              .addClass("invalid-input")
+              .removeClass("valid-input");
+          } else if (!validEmail.test(email)) {
+            $(".email-msg")
+              .addClass("invalid-msg")
+              .text("Email tidak valid");
+            $(this)
+              .addClass("invalid-input")
+              .removeClass("valid-input");
+          } else {
+            $(".email-msg").empty();
+            $(this)
+              .addClass("valid-input")
+              .removeClass("invalid-input");
+          }
+        });
+
+        // valiadation for pesan
+        $("#pesan").on("input", function() {
+          var pesan = $(this).val();
+          if (pesan.length == 0) {
+            $(".pesan-msg")
+              .addClass("invalid-msg")
+              .text("Pesan harus di isi !");
+            $(this)
+              .addClass("invalid-input")
+              .removeClass("valid-input");
+          } else {
+            $(".pesan-msg").empty();
+            $(this)
+              .addClass("valid-input")
+              .removeClass("invalid-input");
+          }
+        });
+
+        // validation to submit the form
+        $("#myForm").on("input", function(e) {
+          if ($("#myForm").find(".valid-input").length == 3) {
+            $("#kirim").removeClass("allowed-submit");
+            $("#kirim").removeAttr("disabled");
+          } else {
+            e.preventDefault();
+            $("#kirim").attr("disabled", "disabled");
+          }
         });
     });
     </script>
